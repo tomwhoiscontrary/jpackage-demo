@@ -24,6 +24,7 @@ task jpackage(type: Exec) {
             '--input', jar.destinationDirectory.asFile.get(),
             '--output', "${buildDir}/app-image",
             '--main-jar', jar.archiveFileName.get()
+    environment << [JPACKAGE_DEBUG: true]
 }
 
 assemble.dependsOn jpackage
