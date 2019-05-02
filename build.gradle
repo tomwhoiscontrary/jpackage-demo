@@ -17,9 +17,13 @@ jar {
     }
 }
 
-def jpackageHome = Objects.requireNonNull(System.getenv('JPACKAGE_HOME'))
 task jpackage(type: Exec) {
-    commandLine "${jpackageHome}/bin/jpackage", 'create-app-image', '--name', 'demo', '--input', jar.destinationDirectory.asFile.get(), '--output', "${buildDir}/app-image", '--main-jar', jar.archiveFileName.get()
+    commandLine "${project.properties['jpackage.home']}/bin/jpackage",
+            'create-app-image',
+            '--name', 'demo',
+            '--input', jar.destinationDirectory.asFile.get(),
+            '--output', "${buildDir}/app-image",
+            '--main-jar', jar.archiveFileName.get()
 }
 
 assemble.dependsOn jpackage

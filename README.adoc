@@ -1,0 +1,22 @@
+This is a minimal demo of using jpackage.
+
+To configure it, create a file gradle.properties with two entries:
+
+----
+org.gradle.java.home=/path/to/jdk-11
+jpackage.home=/path/to/jdk-13-with-jpackage
+----
+
+The idea is to build everything with JDK 11, and then use the early access jpackage just for packaging.
+
+Then build:
+
+----
+./gradlew build
+----
+
+Then run:
+
+----
+build/app-image/demo/demo
+----
