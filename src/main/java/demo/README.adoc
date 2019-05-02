@@ -1,0 +1,11 @@
+To build, including running jpackage, do:
+
+----
+JAVA_HOME=/path/to/jdk11 JPACKAGE_HOME=/path/to/jdk13-with-jpackage ./gradlew clean build
+----
+
+To run the packaged application, do:
+
+----
+build/app-image/demo/demo
+----

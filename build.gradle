@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+assert Runtime.version().major() == 11
+sourceCompatibility = 11
+targetCompatibility = 11
+
+mainClassName = 'demo.App'
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': mainClassName
+        )
+    }
+}
+
+def jpackageHome = Objects.requireNonNull(System.getenv('JPACKAGE_HOME'))
+task jpackage(type: Exec) {
+    commandLine "${jpackageHome}/bin/jpackage", 'create-app-image', '--name', 'demo', '--input', jar.destinationDirectory.asFile.get(), '--output', "${buildDir}/app-image", '--main-jar', jar.archiveFileName.get()
+}
+
+assemble.dependsOn jpackage
